@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment # Kubernetes resource kind we are creating
+metadata:
+  name: foodcatalogapp
+  labels:
+    app: foodcatalogapp
+spec:
+  replicas: 1 # Number of replicas that will be created for this deployment
+  selector:
+    matchLabels:
+      app: foodcatalogapp
+  template:
+    metadata:
+      labels:
+        app: foodcatalogapp
+    spec:
+      containers:
+        - name: foodcatalogapp
+          image: harpzzz/food-catalog-service:0.0.4
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9092 #
+
+          env: # Environment variables supplied to the Pod
+            - name: SPRING_DATASOURCE_USERNAME # Name of the environment variable
+              valueFrom: # Get the value of environment variable from kubernetes secrets
+                secretKeyRef:
+                  name: secret
+                  key: mysql-username
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: mysql-password
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap
+                  key: foodcatalogdb_url
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: foodcatalogapp
+spec:
+  ports:
+    - protocol: TCP
+      port: 9092
+      targetPort: 9092
+  selector:
+    app: foodcatalogapp

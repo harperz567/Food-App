@@ -27,7 +27,7 @@ const routes: Routes = [
     path: 'food-catalog/:id', 
     component: FoodCatalogComponent,
     data: {
-      prerender: false // 尝试这个属性
+      prerender: false 
     }
   }
 ];

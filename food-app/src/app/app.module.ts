@@ -9,7 +9,7 @@ import { RestaurantListingModule } from './restaurant-listing/restaurant-listing
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { FoodCatalogModule } from './food-catalog/food-catalog.module';
 import { OrderSummaryModule } from './order-summary/order-summary.module';
-
+//import { PaymentModule } from './payment/payment.module';
 @NgModule({
   declarations: [
     AppComponent
@@ -21,7 +21,8 @@ import { OrderSummaryModule } from './order-summary/order-summary.module';
     RestaurantListingModule,
     //HttpClientModule
     FoodCatalogModule,
-    OrderSummaryModule
+    OrderSummaryModule,
+    //PaymentModule
   ],
   providers: [
     provideClientHydration(withEventReplay()),

@@ -43,7 +43,15 @@ export class RestaurantListingComponent implements OnInit{
     return `${randomIndex}.jpg`;
   }
   getImageForRestaurant(id: number): string {
-    return this.restaurantImages[id] || '1.jpg';
+    const specificImages: {[id: number]: string} = {
+    1: 'harpers-kitchen.jpg',      // Harper's Kitchen
+    702: 'thyme-to-eat.jpg',       // Thyme to Eat
+    902: 'onion-rings.jpg',        // Lord of the Onion Rings
+    903: 'breaking-bread.jpg',     // Breaking Bread
+    904: 'shades-gravy.jpg'        // 50 Shades of Gravy
+    };
+  
+    return specificImages[id] || this.restaurantImages[id] || '1.jpg';
   }
 
   getRandomNumber(min: number, max: number): number {

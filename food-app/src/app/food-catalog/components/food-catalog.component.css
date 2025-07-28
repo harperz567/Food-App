@@ -1,107 +1,203 @@
 .restaurant-details {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 24px;
+}
+
+.restaurant-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.restaurant-header h1 {
+  font-size: 32px;
+  font-weight: 800;
+  color: #2d3748;
+  margin: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.restaurant-header p {
+  color: #718096;
+  font-size: 16px;
+  margin: 8px 0 0 0;
+  max-width: 60%;
+}
+
+.checkout-button {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 8px 25px rgba(72, 187, 120, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.checkout-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.checkout-button:hover::before {
+  left: 100%;
+}
+
+.checkout-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(72, 187, 120, 0.4);
+}
+
+.checkout-button:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+h2 {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 40px 0 30px 0;
+  color: #2d3748;
+}
+
+.food-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.food-item {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  width: 100%;
+  max-width: none;
+}
+
+.food-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+}
+
+.food-details {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.food-name {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #2d3748;
+}
+
+.food-price {
+  font-size: 20px;
+  font-weight: 600;
+  color: #667eea;
+  margin-bottom: 0;
+}
+
+.food-quantity {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(102, 126, 234, 0.05);
+  padding: 12px 20px;
+  border-radius: 50px;
+  border: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.minus-button,
+.plus-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.minus-button:hover,
+.plus-button:hover {
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.minus-button:active,
+.plus-button:active {
+  transform: scale(0.95);
+}
+
+.quantity-label {
+  font-size: 20px;
+  font-weight: 700;
+  color: #4a5568;
+  min-width: 24px;
+  text-align: center;
+  background: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .restaurant-header {
+    flex-direction: column;
     text-align: center;
-    margin: 20px auto;
-    max-width: 800px;
+    gap: 20px;
   }
   
-  .food-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 20px 0;
+  .restaurant-header p {
+    max-width: 100%;
   }
   
   .food-item {
-    display: flex;
-    align-items: center;
-    margin: 10px;
-    padding: 10px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-    width: 800px;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
   }
   
   .food-details {
-    flex-grow: 1;
-    text-align: left;
-  }
-  
-  .food-name {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .food-price {
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-  
-  .food-quantity {
-    display: flex;
-    align-items: center;
-  }
-  
-  .minus-button,
-  .plus-button {
-    background-color: #008CBA;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-  }
-  
-  .minus-button:hover,
-  .plus-button:hover {
-    background-color: #006080;
-  }
-  
-  .quantity-label {
-    margin: 0 10px;
-    font-size: 18px;
-  }
-
-  .checkout-button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 15px 32px;
     text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 0    px;
   }
-  
-  .checkout-button:hover {
-    background-color: #3e8e41;
-  }
-  
-  .checkout-button:active {
-    background-color: #367832;
-  }
-  .checkout-button-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
-  .restaurant-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  
-
-
-
-
-
-
-  
+}

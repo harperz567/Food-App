@@ -15,38 +15,51 @@ export class OrderSummaryComponent {
   obj: any;
   total?: any;
   showDialog: boolean = false;
+  isProcessingOrder: boolean = false;
 
   constructor(private route: ActivatedRoute, private orderService: OrderService, private router: Router) { }
   
   ngOnInit() {
     const data = this.route.snapshot.queryParams['data'];
     this.obj = JSON.parse(data);
-    this.obj.userId=1;
+    this.obj.userId = 1;
     this.orderSummary = this.obj;
 
-    // this.total = this.orderSummary.foodItemsList.reduce((accumulator, currentValue) => {
-    //   return accumulator + (currentValue.quantity * currentValue.price);
-    // }, 0);
+    // Calculate total
     if (this.orderSummary && this.orderSummary.foodItemsList) {
       this.total = this.orderSummary.foodItemsList.reduce((accumulator, currentValue) => {
-        // 确保 price 存在，如果不存在则默认为 0
         const price = currentValue.price || 0;
         return accumulator + (currentValue.quantity * price);
       }, 0);
     }
-
   }
 
   saveOrder() {
+    this.isProcessingOrder = true;
+    
     this.orderService.saveOrder(this.orderSummary)
-      .subscribe(
-        response => {
-            this.showDialog = true;
+      .subscribe({
+        next: (response) => {
+          console.log('Order saved successfully:', response);
+          this.isProcessingOrder = false;
+          
+          // Add the saved order ID to the order data
+          this.obj.orderId = response.orderId;
+          
+          // Navigate to payment page instead of showing success dialog
+          this.router.navigate(['/payment/checkout'], { 
+            queryParams: { 
+              data: JSON.stringify(this.obj) 
+            }
+          });
         },
-        error => {
-          console.error('Failed to save data:', error);
+        error: (error) => {
+          console.error('Failed to save order:', error);
+          this.isProcessingOrder = false;
+          // You can show an error message here if needed
+          alert('Failed to save order. Please try again.');
         }
-      );
+      });
   }
 
   closeDialog() {

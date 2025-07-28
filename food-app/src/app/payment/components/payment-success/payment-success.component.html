@@ -1,0 +1,42 @@
+<div class="success-container">
+  <div class="success-card">
+    <div class="success-icon">
+      <svg width="80" height="80" viewBox="0 0 24 24" fill="#28a745">
+        <circle cx="12" cy="12" r="12" fill="#28a745"/>
+        <path d="m9 12 2 2 4-4" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    
+    <h1>Payment Successful!</h1>
+    <p class="success-message">Your payment has been processed successfully.</p>
+    
+    <div class="payment-details" *ngIf="paymentId && amount">
+      <div class="detail-row">
+        <span class="label">Payment ID:</span>
+        <span class="value">#{{ paymentId }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Amount Paid:</span>
+        <span class="value">${{ amount.toFixed(2) }}</span>
+      </div>
+    </div>
+    
+    <div class="success-actions">
+      <button class="primary-button" (click)="goHome()">
+        Continue Shopping
+      </button>
+      <button class="secondary-button" (click)="trackOrder()">
+        Track Order
+      </button>
+    </div>
+    
+    <div class="next-steps">
+      <h3>What's Next?</h3>
+      <ul>
+        <li>You will receive an order confirmation email shortly</li>
+        <li>Your order is being prepared</li>
+        <li>Estimated delivery time: 30-45 minutes</li>
+      </ul>
+    </div>
+  </div>
+</div>

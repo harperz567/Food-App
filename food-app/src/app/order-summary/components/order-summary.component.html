@@ -22,7 +22,14 @@
         </tr>
       </tfoot>
     </table>
-    <button class="checkout-button" (click)="saveOrder()">Place Order</button>
+    <button 
+      class="checkout-button" 
+      (click)="saveOrder()" 
+      [disabled]="isProcessingOrder"
+    >
+      <span *ngIf="!isProcessingOrder">Proceed to Payment</span>
+      <span *ngIf="isProcessingOrder">Processing...</span>
+    </button>
   </div>
   
   
@@ -33,4 +40,3 @@
       <button class="close-button" (click)="closeDialog()">Close</button>
     </div>
   </div>
-  

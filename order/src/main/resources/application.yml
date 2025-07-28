@@ -1,14 +1,9 @@
 server:
   port: 9094
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
+spring:
+  profiles:
+    active: local
 
-  spring:
-    data:
-      mongodb:
-        uri: mongodb://localhost:27017/orderdb
-application:
-  name: ORDER-SERVICE
+  application:
+    name: ORDER-SERVICE

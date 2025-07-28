@@ -1,0 +1,209 @@
+.success-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+.success-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 800px; 
+  width: 100%;
+}
+
+.success-icon {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  color: #28a745;
+  font-size: 32px; 
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.success-message {
+  color: #666;
+  font-size: 18px; 
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.payment-details {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 25px; 
+  margin-bottom: 30px;
+  text-align: left;
+  max-width: 600px; 
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px; 
+  font-size: 16px; 
+}
+
+.detail-row:last-child {
+  margin-bottom: 0;
+}
+
+.label {
+  color: #666;
+  font-weight: 500;
+}
+
+.value {
+  color: #333;
+  font-weight: bold;
+}
+
+.success-actions {
+  display: flex;
+  gap: 20px; 
+  margin-bottom: 30px;
+  justify-content: center; 
+  flex-wrap: wrap; 
+}
+
+.primary-button, .secondary-button {
+  padding: 15px 30px; 
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: 500;
+  min-width: 180px; 
+}
+
+.primary-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.primary-button:hover {
+  background-color: #218838;
+}
+
+.secondary-button {
+  background-color: #6c757d;
+  color: white;
+}
+
+.secondary-button:hover {
+  background-color: #5a6268;
+}
+
+.next-steps {
+  text-align: left;
+  background-color: #e8f5e8;
+  padding: 25px; 
+  border-radius: 8px;
+  border-left: 4px solid #28a745;
+  max-width: 600px; 
+  margin: 0 auto; 
+}
+
+.next-steps h3 {
+  color: #155724;
+  margin-bottom: 15px;
+  font-size: 20px; 
+  text-align: center;
+}
+
+.next-steps ul {
+  color: #155724;
+  padding-left: 20px;
+  font-size: 16px; 
+}
+
+.next-steps li {
+  margin-bottom: 10px; 
+  line-height: 1.5;
+}
+
+/* 桌面端 */
+@media (min-width: 768px) {
+  .success-card {
+    padding: 50px; 
+  }
+  
+  .success-actions {
+    flex-direction: row;
+    justify-content: center;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+  }
+  
+  .primary-button, .secondary-button {
+    flex: 1;
+    max-width: 200px;
+  }
+}
+
+/* 平板端 */
+@media (min-width: 992px) {
+  .success-container {
+    padding: 40px;
+  }
+  
+  .success-card {
+    padding: 60px;
+  }
+  
+  h1 {
+    font-size: 36px;
+  }
+  
+  .success-message {
+    font-size: 20px;
+  }
+}
+
+/* 移动端 */
+@media (max-width: 767px) {
+  .success-card {
+    padding: 30px 20px;
+    margin: 10px;
+    max-width: 95%;
+  }
+  
+  h1 {
+    font-size: 24px;
+  }
+  
+  .success-message {
+    font-size: 16px;
+  }
+  
+  .success-actions {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .primary-button, .secondary-button {
+    min-width: auto;
+    width: 100%;
+  }
+  
+  .payment-details,
+  .next-steps {
+    max-width: 100%;
+  }
+}

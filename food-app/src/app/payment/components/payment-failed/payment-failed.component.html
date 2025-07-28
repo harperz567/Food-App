@@ -1,0 +1,40 @@
+<div class="failed-container">
+  <div class="failed-card">
+    <div class="failed-icon">
+      <svg width="80" height="80" viewBox="0 0 24 24" fill="#dc3545">
+        <circle cx="12" cy="12" r="12" fill="#dc3545"/>
+        <path d="m15 9-6 6m0-6 6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    
+    <h1>Payment Failed</h1>
+    <p class="error-message">{{ errorMessage }}</p>
+    
+    <div class="failed-actions">
+      <button class="primary-button" (click)="tryAgain()">
+        Try Again
+      </button>
+      <button class="secondary-button" (click)="goHome()">
+        Go Home
+      </button>
+    </div>
+    
+    <div class="help-section">
+      <h3>Need Help?</h3>
+      <p>If you continue to experience issues, please contact our support team.</p>
+      <button class="support-button" (click)="contactSupport()">
+        Contact Support
+      </button>
+    </div>
+    
+    <div class="troubleshooting">
+      <h3>Common Issues:</h3>
+      <ul>
+        <li>Check your internet connection</li>
+        <li>Verify your payment method details</li>
+        <li>Ensure sufficient funds are available</li>
+        <li>Try using a different payment method</li>
+      </ul>
+    </div>
+  </div>
+</div>

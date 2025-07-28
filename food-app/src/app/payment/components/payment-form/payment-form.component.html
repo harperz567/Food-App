@@ -1,0 +1,46 @@
+<div class="payment-container">
+  <h1>Payment Details</h1>
+  
+  <!-- Order Summary -->
+  <div class="order-summary-section">
+    <h2>Order Summary</h2>
+    <div class="order-items" *ngIf="orderData">
+      <div class="item" *ngFor="let item of orderData.foodItemsList">
+        <span class="item-name">{{ item.itemName }}</span>
+        <span class="item-quantity">x{{ item.quantity }}</span>
+        <span class="item-price">${{ item.price }}</span>
+      </div>
+      <div class="total-section">
+        <strong>Total: ${{ paymentRequest.amount.toFixed(2) }}</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Payment Form -->
+  <div class="payment-form-section">
+    <h2>Payment Method</h2>
+    
+    <!-- Stripe Card Element -->
+    <div class="card-form">
+      <div class="form-group">
+        <label>Card Details</label>
+        <div #cardElement class="stripe-card-element"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="action-buttons">
+    <button class="back-button" (click)="goBack()" [disabled]="isProcessing">
+      Back to Order
+    </button>
+    <button 
+      class="pay-button" 
+      (click)="processPayment()" 
+      [disabled]="isProcessing || !clientSecret"
+    >
+      <span *ngIf="!isProcessing">Pay ${{ paymentRequest.amount.toFixed(2) }}</span>
+      <span *ngIf="isProcessing">Processing Payment...</span>
+    </button>
+  </div>
+</div>

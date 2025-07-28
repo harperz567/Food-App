@@ -1,0 +1,34 @@
+# Stage 1: Build the Angular app
+FROM node:18 AS build
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+# Stage 2: Debug container
+FROM node:18-alpine
+WORKDIR /app
+COPY --from=build /app/dist /app/dist
+COPY --from=build /app/package*.json /app/
+RUN npm ci --only=production
+
+# 创建调试脚本
+RUN echo '#!/bin/sh\n\
+echo "=== DIRECTORY STRUCTURE ==="\n\
+find /app -type f -name "*.mjs" | sort\n\
+echo "=== NODE VERSION ==="\n\
+node --version\n\
+echo "=== PACKAGE.JSON ==="\n\
+cat /app/package.json\n\
+echo "=== ATTEMPTING TO START SERVER ==="\n\
+node --enable-source-maps /app/dist/food-app/server/main.server.mjs || echo "Exit code: $?"\n\
+echo "=== KEEPING CONTAINER ALIVE ==="\n\
+tail -f /dev/null\n\
+' > /app/debug.sh
+
+RUN chmod +x /app/debug.sh
+
+EXPOSE 80
+# 启动调试脚本并保持容器运行
+CMD ["/app/debug.sh"]

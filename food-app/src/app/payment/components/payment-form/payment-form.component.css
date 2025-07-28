@@ -1,0 +1,308 @@
+.payment-container {
+  max-width: 1000px; 
+  margin: 20px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h1, h2 {
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center; 
+}
+
+h1 {
+  font-size: 32px; 
+}
+
+h2 {
+  font-size: 24px; 
+}
+
+.order-summary-section {
+  background-color: #f9f9f9;
+  padding: 25px; 
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.order-items {
+  margin-top: 15px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0; 
+  border-bottom: 1px solid #eee;
+  font-size: 16px; 
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.item-name {
+  flex: 1;
+  font-weight: 500;
+}
+
+.item-quantity {
+  margin: 0 15px;
+  color: #666;
+}
+
+.item-price {
+  font-weight: bold;
+  color: #333;
+}
+
+.total-section {
+  margin-top: 20px; 
+  padding-top: 20px;
+  border-top: 2px solid #333;
+  text-align: right;
+  font-size: 20px; 
+}
+
+.payment-form-section {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 30px; 
+  margin-bottom: 30px;
+}
+
+.card-form {
+  background-color: #f8f9fa;
+  padding: 25px; 
+  border-radius: 6px;
+  border: 1px solid #e9ecef;
+  max-width: 600px; 
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 20px; 
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 10px; 
+  font-weight: 500;
+  color: #555;
+  font-size: 16px; 
+}
+
+/* Stripe Elements styling */
+.stripe-card-element {
+  padding: 15px; 
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  transition: box-shadow 150ms ease;
+  font-size: 16px; 
+}
+
+.stripe-card-element:focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+  outline: none;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 20px; 
+  justify-content: center; 
+  max-width: 600px; 
+  margin: 0 auto; 
+  flex-wrap: wrap; 
+}
+
+.back-button, .pay-button {
+  padding: 15px 35px; 
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  min-width: 180px; 
+  font-weight: 500;
+}
+
+.back-button {
+  background-color: #6c757d;
+  color: white;
+}
+
+.back-button:hover:not(:disabled) {
+  background-color: #5a6268;
+}
+
+.pay-button {
+  background-color: #28a745;
+  color: white;
+  font-weight: bold;
+}
+
+.pay-button:hover:not(:disabled) {
+  background-color: #218838;
+}
+
+.back-button:disabled, .pay-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* 桌面端 */
+@media (min-width: 768px) {
+  .payment-container {
+    padding: 30px;
+  }
+  
+  .order-summary-section {
+    padding: 30px;
+  }
+  
+  .payment-form-section {
+    padding: 40px;
+  }
+  
+  .action-buttons {
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .back-button {
+    flex: 1;
+    max-width: 200px;
+  }
+  
+  .pay-button {
+    flex: 2;
+    max-width: 300px;
+  }
+}
+
+/* 大屏桌面端 */
+@media (min-width: 992px) {
+  .payment-container {
+    padding: 40px;
+    max-width: 1200px;
+  }
+  
+  h1 {
+    font-size: 36px;
+  }
+  
+  h2 {
+    font-size: 26px;
+  }
+  
+  .order-summary-section,
+  .payment-form-section {
+    padding: 40px;
+  }
+  
+  .total-section {
+    font-size: 22px;
+  }
+  
+  .item {
+    font-size: 17px;
+    padding: 15px 0;
+  }
+}
+
+
+@media (min-width: 1200px) {
+  .payment-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 40px;
+    max-width: 1400px;
+    grid-template-areas: 
+      "title title"
+      "summary payment"
+      "buttons buttons";
+  }
+  
+  h1 {
+    grid-area: title;
+    margin-bottom: 30px;
+  }
+  
+  .order-summary-section {
+    grid-area: summary;
+    margin-bottom: 0;
+  }
+  
+  .payment-form-section {
+    grid-area: payment;
+    margin-bottom: 0;
+  }
+  
+  .action-buttons {
+    grid-area: buttons;
+    margin-top: 20px;
+  }
+  
+  .card-form {
+    max-width: none; 
+  }
+}
+
+/* 平板端 */
+@media (min-width: 768px) and (max-width: 991px) {
+  .payment-container {
+    max-width: 800px;
+  }
+}
+
+/* 移动端 */
+@media (max-width: 767px) {
+  .payment-container {
+    margin: 10px;
+    padding: 15px;
+    max-width: 95%;
+  }
+  
+  h1 {
+    font-size: 24px;
+  }
+  
+  h2 {
+    font-size: 20px;
+  }
+  
+  .order-summary-section,
+  .payment-form-section {
+    padding: 20px;
+  }
+  
+  .card-form {
+    padding: 20px;
+    max-width: 100%;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    gap: 15px;
+    max-width: 100%;
+  }
+  
+  .back-button, .pay-button {
+    min-width: auto;
+    width: 100%;
+  }
+  
+  .total-section {
+    font-size: 18px;
+  }
+  
+  .item {
+    font-size: 14px;
+    padding: 10px 0;
+  }
+}
